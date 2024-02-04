@@ -1,16 +1,25 @@
-[ DB복구용 바이너리데이터 명령어 ]
-- 윈도우
+1. DB 복구용 바이너리 데이터 명령어
+
+1.1 윈도우
 mysqlbinlog --base64-output=DECODE-ROWS -v --skip-gtids --force-if-open DESKTOP-BANL3MI-bin.000002 DESKTOP-BANL3MI-bin.000003 DESKTOP-BANL3MI-bin.000004 DESKTOP-BANL3MI-bin.000005 DESKTOP-BANL3MI-bin.000006 DESKTOP-BANL3MI-bin.000007 > binlog.000001.sql
-- 리눅스
-sudo ..
-mysqlbinlog /var/lib/mysql/binlog.000001 /var/lib/mysql/binlog.000002 > recover.sql
 
+1.2 리눅스
+sudo mysqlbinlog /var/lib/mysql/binlog.000001 /var/lib/mysql/binlog.000002 > recover.sql
 
-[ Land 프로시저, 테스트용쿼리 ]
-call check_lands((SELECT uuid FROM 테이블 WHERE name = 'BonggilB'));
+2. Land 프로시저 및 테스트용 쿼리
 
+2.1 Land 프로시저 호출
+CALL check_lands((SELECT uuid FROM 테이블 WHERE name = 'BonggilB'));
 
-SELECT * FROM 
-    user_sync.lands_lands 
-WHERE id = ( SELECT JSON_UNQUOTE(JSON_EXTRACT(lands, '$[0]')) AS id
-        FROM user_sync.lands_user WHERE id = (SELECT uuid FROM user_sync.sync_users WHERE username = '오민혁'));
+2.2 테스트용 쿼리
+SELECT * FROM user_sync.lands_lands 
+WHERE id = (SELECT JSON_UNQUOTE(JSON_EXTRACT(lands, '$[0]')) AS id
+            FROM user_sync.lands_user 
+            WHERE id = (SELECT uuid FROM user_sync.sync_users WHERE username = '오민혁'));
+
+3. 추가 설명 및 참고 사항
+
+DB 복구용 바이너리 데이터 명령어는 해외,국내 서버 운영체제에 맞게 작성되었습니다.
+Land 프로시저 및 테스트용 쿼리는 정상적으로 동작하며, check_lands 프로시저는 특정 이름을 가진 사용자의 부동산목록을 확인합니다.
+
+ㅎㅎ
