@@ -22,3 +22,4 @@ WHERE id = (SELECT JSON_UNQUOTE(JSON_EXTRACT(lands, '$[0]')) AS id
 
 DB 복구용 바이너리 데이터 명령어는 해외,국내 서버 운영체제에 맞게 작성되었습니다.
 Land 프로시저 및 테스트용 쿼리는 정상적으로 동작하며, check_lands 프로시저는 특정 이름을 가진 사용자의 부동산목록을 확인합니다.
+실제동작에선 uuid를 직접 받아와야 합니다
