@@ -1,6 +1,10 @@
 [ DB복구용 바이너리데이터 명령어 ]
-
+- 윈도우
 mysqlbinlog --base64-output=DECODE-ROWS -v --skip-gtids --force-if-open DESKTOP-BANL3MI-bin.000002 DESKTOP-BANL3MI-bin.000003 DESKTOP-BANL3MI-bin.000004 DESKTOP-BANL3MI-bin.000005 DESKTOP-BANL3MI-bin.000006 DESKTOP-BANL3MI-bin.000007 > binlog.000001.sql
+- 리눅스
+sudo ..
+mysqlbinlog /var/lib/mysql/binlog.000001 /var/lib/mysql/binlog.000002 > recover.sql
+
 
 [ Land 프로시저, 테스트용쿼리 ]
 call check_lands((SELECT uuid FROM 테이블 WHERE name = 'BonggilB'));
