@@ -1,0 +1,12 @@
+[ DB복구용 바이너리데이터 명령어 ]
+
+mysqlbinlog --base64-output=DECODE-ROWS -v --skip-gtids --force-if-open DESKTOP-BANL3MI-bin.000002 DESKTOP-BANL3MI-bin.000003 DESKTOP-BANL3MI-bin.000004 DESKTOP-BANL3MI-bin.000005 DESKTOP-BANL3MI-bin.000006 DESKTOP-BANL3MI-bin.000007 > binlog.000001.sql
+
+[ Land 프로시저, 테스트용쿼리 ]
+call check_lands((SELECT uuid FROM 테이블 WHERE name = 'BonggilB'));
+
+
+SELECT * FROM 
+    user_sync.lands_lands 
+WHERE id = ( SELECT JSON_UNQUOTE(JSON_EXTRACT(lands, '$[0]')) AS id
+        FROM user_sync.lands_user WHERE id = (SELECT uuid FROM user_sync.sync_users WHERE username = '오민혁'));
