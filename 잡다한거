@@ -4,7 +4,8 @@
 mysqlbinlog --base64-output=DECODE-ROWS -v --skip-gtids --force-if-open DESKTOP-BANL3MI-bin.000002 DESKTOP-BANL3MI-bin.000003 DESKTOP-BANL3MI-bin.000004 DESKTOP-BANL3MI-bin.000005 DESKTOP-BANL3MI-bin.000006 DESKTOP-BANL3MI-bin.000007 > binlog.000001.sql
 
 1.2 리눅스
-sudo mysqlbinlog /var/lib/mysql/binlog.000001 /var/lib/mysql/binlog.000002 > recover.sql
+sudo ..
+mysqlbinlog /var/lib/mysql/binlog.000001 /var/lib/mysql/binlog.000002 > recover.sql
 
 2. Land 프로시저 및 테스트용 쿼리
 
